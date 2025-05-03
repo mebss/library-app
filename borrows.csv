@@ -1,3 +1,0 @@
-borrow_id,book_id,member_id,borrow_date,return_date,late_fee
-BR20250219101010000000,B002,M001,2025-02-01,2025-02-15,0
-BR20250219101020000000,B001,M002,2025-02-10,,0

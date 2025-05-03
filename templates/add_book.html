@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Book{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Add a New Book</h1>
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('add_book') }}">
+    <div class="mb-3">
+      <label class="form-label">Book ID</label>
+      <input
+        type="text"
+        name="book_id"
+        class="form-control"
+        value="{{ form.book_id or '' }}"
+        required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        value="{{ form.title or '' }}"
+        required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <input
+        type="text"
+        name="author"
+        class="form-control"
+        value="{{ form.author or '' }}"
+        required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Genre</label>
+      <input
+        type="text"
+        name="genre"
+        class="form-control"
+        value="{{ form.genre or '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Publication Year</label>
+      <input
+        type="text"
+        name="year"
+        class="form-control"
+        value="{{ form.year or '' }}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Book</button>
+    <a href="{{ url_for('index') }}" class="btn btn-link">Cancel</a>
+  </form>
+{% endblock %}

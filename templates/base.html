@@ -1,0 +1,83 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{% block title %}Library{% endblock %} &ndash; My Library</title>
+
+      <!-- Bootstrap CSS -->
+     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+      <!-- Your custom styles -->
+      <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/main.css') }}">
+
+      {% block head %}{% endblock %}
+    </head>
+
+    <body class="d-flex flex-column min-vh-100">
+
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+          <a class="navbar-brand" href="{{ url_for('index') }}">📚 Library</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link{% if request.endpoint=='index' %} active{% endif %}"
+                   href="{{ url_for('index') }}">Books</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link{% if 'members' in request.endpoint %} active{% endif %}"
+                   href="{{ url_for('list_members') }}">Members</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link{% if 'borrows' in request.endpoint %} active{% endif %}"
+                   href="{{ url_for('list_borrows') }}">Borrows</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main content area -->
+      <main class="container my-4 flex-fill">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              {% for msg in messages %}{{ msg }}<br>{% endfor %}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-light text-center py-3 mt-auto">
+        <div class="container">
+          &copy; {{ now().year }} My Library
+        </div>
+      </footer>
+
+      <!-- Bootstrap JS Bundle (includes Popper) -->
+      <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+      {% block scripts %}{% endblock %}
+    </body>
+    </html>

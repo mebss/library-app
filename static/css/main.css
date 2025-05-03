@@ -1,0 +1,103 @@
+/* static/css/main.css */
+
+/* 1. CSS custom properties for easy theming */
+:root {
+  --color-primary:   #4a90e2;
+  --color-secondary: #f5a623;
+  --font-base:       "Segoe UI", sans-serif;
+  --bg-page:         #f8f9fa;
+  --text-muted:      #6c757d;
+}
+
+/* 2. Base typography & page background */
+body {
+  font-family: var(--font-base);
+  line-height: 1.6;
+  background-color: var(--bg-page);
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Navbar tweaks */
+.navbar {
+  background-color: var(--color-primary) !important;
+}
+.navbar-brand,
+.nav-link {
+  color: #fff !important;
+}
+.nav-link.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* 4. Tables */
+.table-responsive {
+  margin-bottom: 1.5rem;
+}
+.table-hover tbody tr:hover {
+  background-color: #e9f2ff;
+}
+
+/* 5. Buttons */
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-primary:hover {
+  background-color: #4281c9;
+  border-color: #4281c9;
+}
+.btn-link {
+  color: var(--text-muted);
+}
+.btn-link:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* 6. Form elements */
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+  border-color: var(--color-primary);
+}
+
+/* 7. Alerts & flash messages */
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+
+/* 8. Badges */
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+.badge.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+/* 9. Footer styling */
+footer {
+  background-color: #fff;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.9rem;
+  padding: 0.75rem 0;
+}
+
+/* 10. Utility classes */
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* 11. Responsive tweaks */
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+}

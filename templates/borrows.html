@@ -1,0 +1,48 @@
+{# templates/borrows.html #}
+{% extends 'base.html' %}
+
+{% block title %}Checked-Out Books{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Checked-Out Books</h1>
+    <a href="{{ url_for('borrow_book') }}" class="btn btn-primary">+ Borrow Book</a>
+  </div>
+
+  {% if borrows %}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="table-light">
+          <tr>
+            <th>Member</th>
+            <th>Book</th>
+            <th>Borrow Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in borrows %}
+            <tr>
+              <td>{{ b.member.member_id }} — {{ b.member.name }}</td>
+              <td>{{ b.book.book_id }} — {{ b.book.title }}</td>
+              <td>{{ b.borrow_date.strftime('%Y-%m-%d') }}</td>
+              <td>
+                <form
+                  method="POST"
+                  action="{{ url_for('return_book', id=b.id) }}"
+                  style="display:inline-block"
+                  onsubmit="return confirm('Return this book?');">
+                  <button type="submit" class="btn btn-sm btn-outline-success">
+                    Return
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-muted">No books are currently checked out.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{# templates/edit_book.html #}
+{% extends 'base.html' %}
+
+{% block title %}Edit Book{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Edit Book</h1>
+
+  <form method="POST" action="{{ url_for('edit_book', id=book.id) }}">
+    <div class="mb-3">
+      <label class="form-label">Book ID</label>
+      <input
+        type="text"
+        name="book_id"
+        class="form-control"
+        value="{{ book.book_id }}"
+        required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        value="{{ book.title }}"
+        required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <input
+        type="text"
+        name="author"
+        class="form-control"
+        value="{{ book.author }}"
+        required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Genre</label>
+      <input
+        type="text"
+        name="genre"
+        class="form-control"
+        value="{{ book.genre }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Publication Year</label>
+      <input
+        type="text"
+        name="year"
+        class="form-control"
+        value="{{ book.year }}">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a href="{{ url_for('index') }}" class="btn btn-link">Cancel</a>
+  </form>
+{% endblock %}
